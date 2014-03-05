@@ -1,0 +1,84 @@
+{%  extends 'index.html' %}
+<html>
+<body>
+{% block page-content%}
+
+		<!-- content area -->
+		<div class="container">
+			<!-- welcome text -->
+			<div class="row-fluid" align="center">
+				<h3 class="font_style">签到记录</h3>
+				<p>
+				亲爱的abuve同学，以下是你的签到记录，如有异常请及时联系老师！
+				</p>
+				<hr>
+			</div>
+			<!-- end welcome text -->
+
+			<!-- row for /static/images -->
+			<div class="row-fluid offset-both">
+
+				<div class="container-fluid">
+					<div class="row-fluid">
+						<div class="span12">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th>
+											序号
+										</th>
+										<th>
+											学号
+										</th>
+										<th>
+											用户名
+										</th>
+										<th>
+											课程
+										</th>
+										<th>
+											签到时间
+										</th>
+										<th>
+											状态
+										</th>
+										<th>
+											积分
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									{%for data in sign_in_data%}
+									    {%if forloop.counter0|divisibleby:2%}
+										<tr class="success">
+									    {%else%}
+										<tr class="warning">
+									    {%endif%}
+										<td align="center">{{forloop.counter0}}</td>
+										<td>1001</td>
+										<td>{{data.user}}</td>
+										<td>{{data.class_name}}</td>
+										<td>{{data.sign_time|date:"Y年m月d日 H:i:s"}}</td>
+										<td>{{data.status}}</td>
+										<td>+3</td>
+									</tr>
+									{%endfor%}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- end row for /static/images -->
+
+		</div>
+		<!-- end content area -->
+
+
+
+{%endblock%}
+
+
+</body>
+</html>

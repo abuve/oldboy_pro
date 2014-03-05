@@ -1,0 +1,138 @@
+{%  extends 'index.html' %}
+<html>
+<body>
+{% block page-content%}
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+function sign_in_action(){
+        var url="/sign_in/";
+        $.post(url,{},function(data){
+                alert(data);
+                location.reload()
+        });
+}
+$(function () {
+    var chart;
+    
+    $(document).ready(function () {
+    	
+    	// Build the chart
+        $('#container').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+        	    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: '百分比',
+                data: [
+                    {
+                        name: '已签到',
+                        y: {{class_user_signIn_yes}},
+                        sliced: true,
+                        selected: true,
+			color: '#9ACD32'
+                    },
+                    {
+			name: '未签到',
+			y: {{class_user_signIn_no}},
+			color: '#FF0000'
+		    }
+                ]
+            }]
+        });
+    });
+    
+});
+
+</script>
+
+		<!-- content area -->
+		<div class="container">
+			<!-- welcome text -->
+			<div class="row-fluid" align="center">
+				<h3 class="font_style">签到中心</h3>
+				<p>
+				小伙伴们请按时签到哦，替签到的行为是万万不可取的！
+				</p>
+				<hr>
+			</div>
+			<!-- end welcome text -->
+
+			<!-- row for /static/images -->
+			<div class="row-fluid offset-both">
+				<!--<div class="span3" align="center">
+					<div class="offset-bottom"><img src="/static/misc/sign_in.png" />
+					</div>
+					<h4 class="index_category">
+						<a href="/sign_in_action/" >我要签到</a>
+					</4>
+				</div>-->
+				<div class="span3" align="center">
+				<div id="container" style="min-width: 350px; height: 165px; margin: 0 auto"></div>
+				</div>
+				<div class="span3" align="center">
+					<div class="offset-bottom"><img src="/static/misc/sign_in.png" />
+					</div>
+					<h4 class="index_category">
+						<a onclick="sign_in_action()">我要签到</a>
+					</h4>
+				</div>
+                                <div class="span3" align="center">
+                                        <!--div class="offset-bottom"><img src="/static/misc/young-man-enjoying-his-freedomrejoicing-from-his-success-in-the.jpg" /-->
+                                        <div class="offset-bottom"><img src="/static/misc/sign_record.png" />
+                                        </div>
+                                        <h4 class="index_category">
+                                                <a href="/sign_in_list/">签到记录</a>
+                                        </h4>
+                                </div>
+                                <div class="span3" >
+                                                <blockquote><marquee direction="up" onmouseover=this.stop() onmouseout=this.start() scrollamount="2">
+						<h4 align="center">考勤动态</h4>
+                                                <small><b>布和</b><cite title="Source Title"> 2月21日08:30签到 积分+3</cite></small><br>
+                                                <small><b>张腾</b><cite title="Source Title"> 2月21日08:40签到 积分+3</cite></small><br>
+                                                <small><b>吴迎松</b><cite title="Source Title"> 2月21日08:45签到 积分+3</cite></small><br>
+                                                <small><b>辰昊楠</b><cite title="Source Title"> 2月21日08:46签到 积分+3</cite></small><br>
+                                                <small><b>付泉石</b><cite title="Source Title"> 2月21日08:50签到 积分+3</cite></small><br>
+                                                <small><b>邹新凯</b><cite title="Source Title"> 2月21日09:05签到 积分+3</cite></small><br>
+                                                <small><b>李楠</b><cite title="Source Title"> 2月21日09:20签到 积分+3</cite></small><br>
+                                                <small><b>韩亮亮</b><cite title="Source Title"> 2月21日迟到20分钟 积分-1</cite></small><br>
+                                                <small><b>杨容</b><cite title="Source Title"> 2月21日迟到25分钟 积分-1</cite></small><br>
+                                                <small><b>马天海</b><cite title="Source Title"> 2月21日迟到1小时26分钟 积分-2</cite></small><br>
+                                                <small><b>李德友</b><cite title="Source Title"> 2月21日旷课 积分-20</cite></small><br>
+                                                <small><b>刘彬</b><cite title="Source Title"> 2月21日旷课 积分-20</cite></small><br>
+                                                <small><b>杨建松</b><cite title="Source Title"> 2月21日未签退 积分-15</cite></small><br>
+                                                </marquee></blockquote>
+
+				</div>
+			</div>
+			<!-- end row for /static/images -->
+
+		</div>
+		<!-- end content area -->
+
+
+
+{%endblock%}
+
+</body>
+</html>
